@@ -1,0 +1,13 @@
+﻿**/bin
+**/obj
+**/.vs
+**/.vscode
+**/*.user
+**/*.suo
+Dockerfile
+docker-compose*
+.git
+.gitignore
+.env
+*.log
+*.pdb

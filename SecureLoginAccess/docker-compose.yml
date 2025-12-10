@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  api:
+    image: secure-login-access
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7012:7012"
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "${ConnectionStrings__DefaultConnection}"
+      Jwt__Issuer: "${Jwt__Issuer:-SecureLoginAccess}"
+      Jwt__Audience: "${Jwt__Audience:-SecureLoginAccessAudience}"
+      Jwt__Secret: "${Jwt__Secret}"
+    # Uncomment to persist DataProtection keys across container restarts
+    # volumes:
+    #   - dpkeys:/root/.aspnet/DataProtection-Keys
+
+# Uncomment if using the dpkeys volume above
+# volumes:
+#   dpkeys:
